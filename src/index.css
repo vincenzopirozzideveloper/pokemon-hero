@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Inter Tight', sans-serif;
+}
+
+/* Play button pulse animation */
+@keyframes play-ring-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.5), 0 0 0 0 rgba(255,255,255,0.25); }
+  60%  { box-shadow: 0 0 0 12px rgba(255,255,255,0), 0 0 0 22px rgba(255,255,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0), 0 0 0 0 rgba(255,255,255,0); }
+}
+
+@keyframes play-scale-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50%       { transform: translate(-50%, -50%) scale(1.08); }
+}
+
+.play-pulse {
+  animation: play-scale-pulse 2s ease-in-out infinite, play-ring-pulse 2s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-pulse {
+    animation: none;
+  }
+}

@@ -1,0 +1,20 @@
+services:
+  frontend:
+    container_name: pokemon_hero_frontend
+    image: node:20-alpine
+    working_dir: /var/www/app
+    command: sh -c "npm install --no-audit --no-fund && npm run dev"
+    volumes:
+      - /root/dev/pokemon-hero:/var/www/app
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      siti_lab_net:
+        ipv4_address: 172.100.0.110
+    restart: unless-stopped
+
+networks:
+  siti_lab_net:
+    external: true
+    name: siti-lab_siti_lab_net
